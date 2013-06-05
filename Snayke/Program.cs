@@ -6,7 +6,15 @@ using System.Threading;
 // Sebastian 'gonX' Jensen <gonX@overclocked.net>
 // DISCLAIMER: there are no I/O operations other than writing to a console window 
 
-namespace Snayke //TODO: add highscores
+// BUGS:
+// - input is cached waayyy too much, hinders gameplay heavily on low diff
+
+// TODO:
+// - add highscores
+// - instant movement on keypress, effectively ignoring the sleep timer
+// - investigate memory leak on main menu (starts off at 1.5M mem use, ends up at about 6M)
+
+namespace Snayke
 {
     class Program
     {
@@ -16,7 +24,7 @@ namespace Snayke //TODO: add highscores
         static int VSize; //vertical size of window
         static int HSize; //horizontal size of window
         static int snakePos; // frame.GetLength(0) * 3 + 3 = upper left with 1 unit margin
-        static IList<KeyValuePair<KeyValuePair<int, int>, int>> redrawtiles = new List<KeyValuePair<KeyValuePair<int, int>, int>>(); //TODO: seriously clean up this atrocity.. it probably works, but it's also probably slow as hell...
+        static IList<KeyValuePair<KeyValuePair<int, int>, int>> redrawtiles = new List<KeyValuePair<KeyValuePair<int, int>, int>>(); //TODO: look into a more effective way of doing this
 
         static void Main()
         {
@@ -77,7 +85,7 @@ namespace Snayke //TODO: add highscores
                                 break;
                             case 2:
                                 Console.Write("\nEnter Difficulty: ");
-                                int tmpupdaterate;
+                                int tmpupdaterate = 0; // set this to 0 to prevent some delayed bugs
                                 int.TryParse(Console.ReadLine().Split('\n')[0], out tmpupdaterate);
                                 if (!(tmpupdaterate < 1 || tmpupdaterate > 500))
                                     hzupdaterate = tmpupdaterate;
