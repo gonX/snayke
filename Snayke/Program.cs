@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Threading;
 
 // no copyright, just attribute me if you use parts of my code - if it's open source, attribute me with at least an email in the code, if it's closed source, attribute me on the start screen of the program, regardless of it having any start screen or not
 // Sebastian 'gonX' Jensen <gonX@overclocked.net>
 // DISCLAIMER: there are no I/O operations other than writing to a console window 
 
-namespace Snayke
+namespace Snayke //TODO: add highscores
 {
     class Program
     {
@@ -98,14 +97,10 @@ namespace Snayke
                 HSize = Console.WindowWidth;
                 VSize = Console.WindowHeight;
 
-                //funny config options:
-                //- allow pause "cheat" (disable Console.Clear() on pause)
-                //- invert colors
-
                 if (startgame)
                 {
                     int totalframes = 0;
-                    int length = 6;
+                    int length = 6; //arbitrary number
                     int actuallength = 2; //actual units for snake
 
                     Console.CursorVisible = false;
@@ -192,7 +187,7 @@ namespace Snayke
                                     if (ck.Key == ConsoleKey.P || ck.Key == ConsoleKey.Escape)
                                     {
                                         Console.WriteLine("");
-                                        for (int i = 300; i != 0; i--)
+                                        for (int i = (pausecheat ? 100 : 300); i != 0; i--)
                                         {
                                             Console.SetCursorPosition(HSize / 2 - pausestring.Length / 2, VSize / 2 + 1);
                                             Console.WriteLine("Resuming in {0}...", i);
