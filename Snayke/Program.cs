@@ -77,7 +77,10 @@ namespace Snayke //TODO: add highscores
                                 break;
                             case 2:
                                 Console.Write("\nEnter Difficulty: ");
-                                int.TryParse(Console.ReadLine().Split('\n')[0], out hzupdaterate);
+                                int tmpupdaterate;
+                                int.TryParse(Console.ReadLine().Split('\n')[0], out tmpupdaterate);
+                                if (!(tmpupdaterate < 1 || tmpupdaterate > 500))
+                                    hzupdaterate = tmpupdaterate;
                                 break;
                             case 3:
                                 pausecheat = !pausecheat;
