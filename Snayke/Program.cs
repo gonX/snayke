@@ -126,8 +126,6 @@ namespace Snayke //TODO: add highscores
 
                     while (gameactive) //game loop
                     {
-                        
-
                         //TODO: add speed-up button
 
                         if (Console.WindowHeight != VSize || Console.WindowWidth != HSize) //enforce window size
@@ -246,7 +244,7 @@ namespace Snayke //TODO: add highscores
                         }
                         else
                         {
-                            totalframes++;
+                            
                             if (frame[getVPos(ref snakePos), getHPos(ref snakePos)] == 1)
                             //check for powerup, generate new if one is found.
                             {
@@ -264,6 +262,7 @@ namespace Snayke //TODO: add highscores
 
                             if ((direction >= 0))
                             {
+                                totalframes++;
                                 if (actuallength == length)
                                 {
                                     //frame[getVPos(ref lastposition), getHPos(ref lastposition)] = 0;
